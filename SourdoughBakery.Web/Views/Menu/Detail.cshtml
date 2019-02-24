@@ -1,0 +1,53 @@
+﻿@model SourdoughBakery.Core.Models.Business.Menu
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>@Html.DisplayFor(model => model.Name) Menu</h1>
+
+<table class="table mt-4 mb-10">
+    <thead>
+        <tr>
+            <th>
+                Product
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products[0].Available)
+            </th>
+            <th>
+                Gluten Free
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Products)
+        {
+            var price = string.Format("€{0:N2}", item.Price);
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsGlutenFree)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
