@@ -30,7 +30,7 @@
     <tbody>
         @foreach (var item in Model.Products)
         {
-            var price = string.Format("€{0:N2}", item.Price);
+            var price = $"€{item.Price:N2}";
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
