@@ -1,9 +1,8 @@
 ﻿using SourdoughBakery.Business.Interfaces;
 using SourdoughBakery.Core.Models.Business;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Bogus;
+using SourdoughBakery.Business.Mock.Helpers;
 
 namespace SourdoughBakery.Business.Mock
 {
@@ -11,7 +10,8 @@ namespace SourdoughBakery.Business.Mock
     {
         public async Task<Product> GetProductAsync(string productId)
         {
-            return await Task.FromResult(new Product());
+            var product = FakerHelper.GetFakeProduct();
+            return await Task.FromResult(product.Generate());
         }
     }
 }
