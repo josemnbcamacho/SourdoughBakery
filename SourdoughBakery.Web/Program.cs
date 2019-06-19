@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore;
+﻿using System;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace SourdoughBakery.Web
@@ -10,8 +11,13 @@ namespace SourdoughBakery.Web
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder (string[] args)
+        {
+            string port = Environment.GetEnvironmentVariable ("PORT") ?? "8080";
+            string url = string.Concat ("http://0.0.0.0:", port);
+
+            return WebHost.CreateDefaultBuilder (args)
+                .UseStartup<Startup> ().UseUrls (url);
+        }
     }
 }
