@@ -13,11 +13,11 @@ namespace SourdoughBakery.Web
 
         public static IWebHostBuilder CreateWebHostBuilder (string[] args)
         {
-            string port = Environment.GetEnvironmentVariable ("PORT") ?? "8080";
-            string url = string.Concat ("http://0.0.0.0:", port);
+            // string port = Environment.GetEnvironmentVariable ("PORT") ?? "8080";
+            // string url = string.Concat ("http://0.0.0.0:", port);
 
             return WebHost.CreateDefaultBuilder (args)
-                .UseStartup<Startup> ().UseUrls (url);
+                .UseStartup<Startup>();
         }
     }
 }
