@@ -1,23 +1,22 @@
 ﻿using System;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace SourdoughBakery.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
+        public static Task Main(string[] args) =>
+            CreateHostBuilder(args).Build().RunAsync();
 
-        public static IWebHostBuilder CreateWebHostBuilder (string[] args)
-        {
-            // string port = Environment.GetEnvironmentVariable ("PORT") ?? "8080";
-            // string url = string.Concat ("http://0.0.0.0:", port);
-
-            return WebHost.CreateDefaultBuilder (args)
-                .UseStartup<Startup>();
-        }
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(builder => builder.UseStartup<Startup>())
+                .ConfigureLogging(builder =>
+                    builder.AddJsonConsole());
     }
 }
